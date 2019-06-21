@@ -18,4 +18,4 @@ Read the contribution [instructions](https://mpca-data.github.io/Data-Guide//99-
 
 Open sourced under the [MIT license](LICENSE.md).
 
-:heart_eyes_cat:<3<3<3
+:clap::heart_eyes_cat:
