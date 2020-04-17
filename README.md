@@ -9,7 +9,7 @@ A community guide to finding data at the MCPA - https://mpca-data.github.io/Data
 - [GIS](https://mpca-data.github.io/Data-Guide//04-gis/)
 
 
-## :rocket::pencil: Contribute 
+## :pencil: Contribute 
 
 Read the contribution [instructions](https://mpca-data.github.io/Data-Guide//99-contribute/) to make updates and add your own data to the guide.
 
@@ -18,4 +18,3 @@ Read the contribution [instructions](https://mpca-data.github.io/Data-Guide//99-
 
 Open sourced under the [MIT license](LICENSE.md).
 
-:clap::heart_eyes_cat::dog:
