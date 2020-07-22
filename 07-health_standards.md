@@ -25,7 +25,7 @@ The inhalation health benchmarks used by MPCA programs are available online in v
 
 - [Online table](https://public.tableau.com/profile/mpca.data.services#!/vizhome/Airtoxicityvalues/Airtoxicityvalues) 
 - [Excel](https://www.pca.state.mn.us/sites/default/files/aq9-22.xlsm)
-- [CSV test](https://raw.githubusercontent.com/MPCA-air/health-values/master/Inhalation_Health_Benchmarks(IHBs).csv)
+- [CSV](https://raw.githubusercontent.com/MPCA-air/health-values/master/Inhalation_Health_Benchmarks(IHBs).csv)
 
 
 
