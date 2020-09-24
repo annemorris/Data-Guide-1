@@ -4,8 +4,10 @@ title: Contribute to the Guide!
 ---
 
 <p class="message">
-This guide is open to __everyone__ to edit. Follow the steps below to make edits and add new data to the guide.
- </p>
+ 
+This guide is open to **EVERYONE** to edit. Follow the steps below to make edits and add new data to the guide.
+
+</p>
   
 1. Sign-up for a GitHub account at [https://github.com/](https://github.com/)  
 1. Open the project folder:  [https://github.com/MPCA-data/Data-Guide](https://github.com/MPCA-data/Data-Guide)
