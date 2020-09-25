@@ -103,9 +103,7 @@ The National Emissions Inventory (NEI) provides air toxics and criteria and air 
 
 
 ### Facility locations {#fac-coords}
-The most recent compilation of coordinates for facilities with an air permit was performed for the 2017 emission inventory. This data is available in the `INV_SOURCES` table found in the _RAPIDS_ schema of MPCA's _DELTA_ database.
-
-This data can also be accessed from the `WH_TEMPO` schema by querying the ??? table for the air facility locaiton.
+The most recent compilation of coordinates for facilities with an air permit was performed for the 2017 emission inventory. This data is available in the `INV_SOURCES` table found in the _RAPIDS_ schema of MPCA's _DELTA_ database. These data can also be accessed from the `WH_TEMPO` schema by querying the "AI_METADATA" table.
 
 
 ### Facility emissions
