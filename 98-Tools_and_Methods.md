@@ -64,6 +64,7 @@ __Recommended packages__
           - Include a name of someone not in the first table
     - Add a 2nd column named `donut`
           - Record each person's donut order (eg. **Chocolate Glazed**)
+5. Close the file and move to your R project folder
 
 <br>
 
@@ -73,6 +74,7 @@ __Recommended packages__
 library(RODBC)
 
 # Connect to Access file
+## Move the Access file to your project folder
 access_connect <- odbcConnectAccess2007("donut_orders.accdb")
 
 # Load the two tables
