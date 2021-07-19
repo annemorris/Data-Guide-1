@@ -3,7 +3,10 @@ layout: page
 title: Tools and Methods
 ---
 
-## Using R and RStudio
+* Add table of contents
+{:toc}
+
+## Using R and RStudio {#R}
 
 ``` .go
 library(RODBC)
