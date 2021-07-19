@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Contribute to the Guide!
+title: Contribute!
 ---
 
 <p class="message">
@@ -11,7 +11,7 @@ This guide is open to **EVERYONE** to edit. Follow the steps below to make edits
   
 1. Sign-up for a GitHub account at [https://github.com/](https://github.com/)  
 1. Open the project folder:  [https://github.com/MPCA-data/Data-Guide](https://github.com/MPCA-data/Data-Guide)
-1. 3.	Get invited to the __MPCA-data__ organization.
+1. Get invited to the __MPCA-data__ organization.
     - Ask Casey.Scott@state.mn.us or Dorian.Kvale@state.mn.us
 1. Select one of the `.md` files that best aligns with your media type _(e.g. 01-water.md)_.
 1. Add content and make edits using __Markdown__ syntax for styling.
