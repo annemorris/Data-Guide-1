@@ -16,7 +16,7 @@ We invite you to add your own program's content to the guide and your name to th
 > Contribute here: [https://github.com/MPCA-data/Data-Guide](https://github.com/MPCA-data/Data-Guide)
 
 
-__Current contributors__
+__Contributors__
 
 - Water 
     - Casey Scott
