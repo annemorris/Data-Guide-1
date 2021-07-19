@@ -29,4 +29,6 @@ __Current contributors__
     - Anne Morris
 - Weather and climate
     - Daniel Dix
+- GHGs
+    - Anne Claflin
     
