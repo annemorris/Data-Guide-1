@@ -21,7 +21,7 @@ This guide is open to **EVERYONE** to edit. Follow the steps below to make edits
     - Create a new text file with the file extension `.md`.
     - Add a 2 digit file number in front of the file name: `08-insects.md`.
         - This number will determine your file’s order in the Guide’s navigation menu. This file is numbered ‘99’ so it will become the last section of the Guide.
-1. When finished, scroll to the bottom of the page and click the green `[Commit changes]` button.
+1. When finished scroll to the bottom and click the green button `[Commit changes]`
 
 <br>
 
