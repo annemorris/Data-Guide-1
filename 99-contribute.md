@@ -1,6 +1,6 @@
 ---
 layout: page
-title: _Contribute!_
+title: Contribute!
 ---
 
 <p class="message">
