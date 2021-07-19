@@ -19,12 +19,12 @@ We invite you to add your own program's content to the guide and your name to th
 __Current contributors__
 
 - Water 
-	- Casey Scott
+    - Casey Scott
 - Air
-    - Derek Nagel
     - Kristie Ellickson
     - Dorian Kvale
 - Land
+    - Barbara Monaco 
 - GIS
     - Anne Morris
 - Weather and climate
