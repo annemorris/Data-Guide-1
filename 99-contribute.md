@@ -27,4 +27,4 @@ This guide is open to **EVERYONE** to edit. Follow the steps below to make edits
 
 __Well done!__ 
 
-Thank you for your amazing contribution. After waiting a minute, you can view your updates by refreshing the webpage.
+Thank you for your fantastic contribution. After waiting a minute, you can view your updates by refreshing the webpage.
