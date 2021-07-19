@@ -60,7 +60,7 @@ __Recommended packages__
     - In the 1st column put `name` as the header and include at least one of the same names from the first table
     - Add someone not included in the first table
     - In the 2nd column put `order` and add their donut order
-4. Save the file as `donut_orders`
+4. Save the file as `donut_orders.accdb`
 
 <br>
 
@@ -69,10 +69,13 @@ __Recommended packages__
 ```go
 library(RODBC)
 
-# Load the two tables
-people <- odbc("donut_orders.accdb", "table_1")
+# Connect to Access file
+access_connection <- odbcConnect("donut_orders.accdb")
 
-orders <- odbc("donut_orders.accdb", "table_2")
+# Load the two tables
+people <- sqlFetch(access_connection, "table_1")
+
+orders <- sqlFetch(access_connection, "table_2")
 
 # Join the orders to the first table with `left_join()`
 people_orders <- left_join(people, orders)
