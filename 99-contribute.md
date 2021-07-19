@@ -25,6 +25,6 @@ This guide is open to **EVERYONE** to edit. Follow the steps below to make edits
 
 <br>
 
-__Well done!__ 
+### Well done! 
 
-Thank you for your fantastic contribution. After waiting a minute, you can view your updates by refreshing the webpage.
+Thank you for your fantastic contribution. After waiting a minute, you can view your updates by refreshing the Data Guide webpage.
