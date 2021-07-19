@@ -68,7 +68,7 @@ __Recommended packages__
 
 > ### Now we can read the data into R
 
-```go
+```r
 library(RODBC)
 
 # Connect to Access file
@@ -87,7 +87,7 @@ people_orders <- left_join(people, orders)
 
 > ### Did it work? View the joined data.
 
-```go
+```r
 View(people_orders)
 ```
 
@@ -95,7 +95,7 @@ View(people_orders)
 
 > ### Try using `full_join()`
 
-```go
+```r
 # Join orders with `full_join()`
 people_orders_full <- full_join(people, orders)
 
