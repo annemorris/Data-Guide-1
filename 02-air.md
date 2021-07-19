@@ -3,11 +3,12 @@ layout: page
 title: Air
 ---
 
+This section includes air monitoring, air emissions and air modeling data.
+
 ---
 
 ![](https://c1.staticflickr.com/3/2905/14291435282_00e80785e9_h.jpg){:width="90%"}
 
-This section includes air monitoring, air emissions and air modeling data.
 
 * Add table of contents
 {:toc}
