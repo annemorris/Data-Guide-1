@@ -3,7 +3,7 @@ layout: page
 title: Tools and Methods
 ---
 
-Tips and instructions to get data with the programming language R.
+Tips and steps to get data with the programming language R
 
 ---
 
@@ -12,6 +12,8 @@ Tips and instructions to get data with the programming language R.
 
 * Add table of contents
 {:toc}
+
+<br>
 
 ## Using R and RStudio {#R}
 
@@ -23,32 +25,32 @@ Tips and instructions to get data with the programming language R.
 __Recommended packages__
 
 
-> __Loading data__
+> Loading data
 
-`readr`     Load data from text files: tab, comma, and other delimited files.
+`readr`     Load data from text files: tab, comma, and other delimited files
 
-`readxl`    Load data from Excel.
+`readxl`    Load data from Excel
 
-`RODBC`     Load data from Access and Oracle databases such as DELTA.
+`RODBC`     Load data from Access and Oracle Dbs such as DELTA / TEMPO
 
-`RPostgresSQL`, `RMySQL`, and `RSQLite`  Connect to SQL databases.
+`RPostgresSQL`, `RMySQL`, and `RSQLite`  Connect to SQL databases
 
-`rvest`     Read and scrape content from webpages.
+`rvest`     Read and scrape content from webpages
 
-`pdftools`  Read PDF documents.
+`pdftools`  Read PDF documents
 
-`googledrive` Read and write files to your Google Drive.
+`googledrive` Read and write files to your Google Drive
 
-`foreign`   Load data from Minitab and Systat.
+`foreign`   Load data from Minitab and Systat
 
-`R.matlab`  Load data from Matlab.
+`R.matlab`  Load data from Matlab
 
-`haven`     Load data from SAS, SPSS, and Stata.
+`haven`     Load data from SAS, SPSS, and Stata
 
 <br>
 
 
-## Access database {#access}
+## Microsoft Access {#access}
 
 1. Create a new Access file
 2. Add a table 
@@ -56,12 +58,13 @@ __Recommended packages__
     - In the 2nd column put `city` as the header and add 3 cities
 3. Add a 2nd table
     - In the 1st column put `name` as the header and include at least one of the same names from the first table
+    - Add someone not included in the first table
     - In the 2nd column put `order` and add their donut order
 4. Save the file as `donut_orders`
 
 <br>
 
-Now we can read the data into R:
+> Now we can read the data into R:
 
 ``` .go
 library(RODBC)
