@@ -16,7 +16,7 @@ This guide is open to **EVERYONE** to edit. Follow the steps below to make edits
 1. Select the `.md` file that best aligns with your media type _(e.g. 01-water.md)_
 1. Add content and make edits using __Markdown__ syntax for styling.
     - Learn Markdown here: [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-    - To see a live preview of your file select the `Preview changes` tab.
+    - To see a live preview of your file, select the `Preview changes` tab.
 1. Don't see a file that fits your needs? 
     - Create a new text file with the file extension `.md`.
     - Add a 2 digit file number in front of the file name: `08-insects.md`.
