@@ -7,8 +7,6 @@ Tips and steps to get data with the programming language R
 
 ---
 
-![](https://images.g2crowd.com/uploads/attachment/file/68288/expirable-direct-uploads_2Fe8193163-4936-4785-bbb5-b760e9eb10b8_2FRStudio_IDE_1.1_Starbucks.png){:width="70%"}
-
 
 * Add table of contents
 {:toc}
@@ -17,12 +15,12 @@ Tips and steps to get data with the programming language R
 
 ## Using R and RStudio {#R}
 
-![](https://github.com/MPCA-air/air-methods/raw/master/images/tidy_packages.PNG){:width="60%"}
+![](https://images.g2crowd.com/uploads/attachment/file/68288/expirable-direct-uploads_2Fe8193163-4936-4785-bbb5-b760e9eb10b8_2FRStudio_IDE_1.1_Starbucks.png){:width="74%"}
 
 <br>
 
-
 __Recommended packages__
+![](https://github.com/MPCA-air/air-methods/raw/master/images/tidy_packages.PNG){:width="53%"}
 
 
 > Loading data
