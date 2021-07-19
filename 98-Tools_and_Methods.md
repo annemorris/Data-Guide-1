@@ -66,7 +66,7 @@ __Recommended packages__
 
 > Now we can read the data into R:
 
-``` .go
+```go
 library(RODBC)
 
 # Load the two tables
