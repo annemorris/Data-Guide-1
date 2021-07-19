@@ -56,12 +56,14 @@ __Recommended packages__
 1. Create a new `Blank database`
     - Name it `donut_orders.accdb`
 3. Select `Click to add` to add 2 new "_short text_" columns 
-    - In the 1st column put `name` as the header _(1st row)_ and add 3 names of hungry people
-    - In the 2nd column put `city` as the header and add 3 cities
+    - In the 1st column, right click `Field1` and choose "Rename field" and update name to `person` as the header 
+          - Add 3 names of hungry people
+    - In the 2nd column, rename `Field2` as `city` and add 3 cities
 4. Add a 2nd table: Select `Create` from the top menu and click `Table`
-    - In the 1st column put `name` as the header and include at least one of the same names from the first table
-    - Add a name of someone not included in the first table
-    - In the 2nd column put `order` and add their donut order (eg. **Chocolate Glazed**)
+    - Add a column named `person` and include at least one of the same names from the first table
+          - Include a name of someone not in the first table
+    - Add a 2nd column named `donut`
+          - Record each person's donut order (eg. **Chocolate Glazed**)
 
 <br>
 
@@ -71,12 +73,12 @@ __Recommended packages__
 library(RODBC)
 
 # Connect to Access file
-access_connection <- odbcConnect("donut_orders.accdb")
+access_connect <- odbcConnectAccess2007("donut_orders.accdb")
 
 # Load the two tables
-people <- sqlFetch(access_connection, "Table1")
+people <- sqlFetch(access_connect, "Table1")
 
-orders <- sqlFetch(access_connection, "Table2")
+orders <- sqlFetch(access_connect, "Table2")
 
 # Join the orders to the first table with `left_join()`
 people_orders <- left_join(people, orders)
