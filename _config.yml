@@ -11,6 +11,9 @@ description:      "MPCA's community guide to finding data"
 url:              https://MPCA-data.github.io/Data-Guide/
 baseurl:          /Data-Guide/
 
+toc:
+  max_level: 2 # default: 6
+
 author:
   name:           'MPCA'
   url:            https://twitter.com/mnpca
