@@ -1,6 +1,6 @@
 # The Data Guide :mag_right::earth_africa::floppy_disk:
 
-A community guide to finding data at the MCPA - https://mpca-data.github.io/Data-Guide
+MPCA's community guide to finding data - https://mpca-data.github.io/Data-Guide
 
 ## Contents
 
