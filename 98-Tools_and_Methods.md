@@ -93,11 +93,17 @@ people_orders <- left_join(people, orders)
 View(people_orders)
 ```
 
+<br>
+
 > ### Try using `full_join()`
 
 ```go
-# Join orders w/ `full_join()`
+# Join orders with `full_join()`
 people_orders_full <- full_join(people, orders)
 
 View(people_orders_full)
 ```
+
+> ### What's different?
+
+
