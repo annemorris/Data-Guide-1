@@ -126,6 +126,8 @@ View(city_orders_full)
 3. **What does the joined table look like?**
 
 
+<br>
+
 > ### Add new table to Access
 
 ```r
