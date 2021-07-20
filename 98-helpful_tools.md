@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Tools and Methods
+title: Helpful tools
 ---
 
-Tips and steps to get data with the programming language R
+Tips and steps to get data with the language R
 
 ---
 
@@ -79,20 +79,25 @@ library(RODBC)
 access_connect <- odbcConnectAccess2007("donut_orders.accdb")
 
 # Load the two tables
-people <- sqlFetch(access_connect, "Table1")
+cities <- sqlFetch(access_connect, "Table1")
 
 orders <- sqlFetch(access_connect, "Table2")
 
 # Join the orders to the first table with `left_join()`
-people_orders <- left_join(people, orders, by = "person")
+city_orders <- left_join(cities, orders, by = "person")
 
 ```
 
 > ### Did it work? View the joined data.
 
 ```r
-View(people_orders)
+View(city_orders)
 ```
+
+<br>
+
+> ### Try dropping the `by = "person"` argument
+
 
 <br>
 
@@ -105,9 +110,9 @@ View(people_orders)
 
 ```r
 # Join orders with `full_join()`
-people_orders_full <- full_join(people, orders, by = "person")
+city_orders_full <- full_join(cities, orders, by = "person")
 
-View(people_orders_full)
+View(city_orders_full)
 ```
 
 <br>
@@ -121,5 +126,32 @@ View(people_orders_full)
 3. **What does the joined table look like?**
 
 
+> ### Add new table to Access
 
+```r
+sqlSave(access_connect, city_orders, tablename = "city_orders")
+
+# Or add a new row to a table
+sqlSave(access_connect, 
+        mutate(cities[1, ], ID = 9), 
+        tablename = "Table1", 
+        append = T, 
+        rownames = FALSE)
+        
+```
+
+<br>
+
+
+> ### Custom SQL
+
+```r
+sqlQuery(access_connect, "SELECT person FROM Table1")
+```
+
+> ### View only the non-matches with `anti_join()`
+
+```r
+no_matches <- anti_join(cities, orders, by = "person", na_matches = "never")
+```
 
