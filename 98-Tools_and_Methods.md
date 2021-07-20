@@ -69,7 +69,7 @@ __Recommended packages__
 
 <br>
 
-> ### Now we can read the data into R
+> ### Now read the data into R
 
 ```r
 library(RODBC)
