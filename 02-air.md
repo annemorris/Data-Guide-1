@@ -74,8 +74,181 @@ View and download summarized air toxics monitoring data results from the online 
 Want to learn more about ultrafine particles?
 
 - __Explore the summarized data__:
+
+```{r pull all the data}
+##packages
+library(tidyverse)
+library(openair)
+library(ggplot2)
+library(RcppRoll)
+library(lubridate)
+library(DT)
+options(scipen = 999)
+
+ufp <- read.csv("X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/6 Air Data/UFP Processing/Data File/r_checked_rules.csv", stringsAsFactors = F)
+```
 - __Download raw data__:
 
+```{r get ftp ufps}
+##Pull and Process UFP Instrument Data
+
+##libraries
+library(tidyverse)
+library(reshape2)
+#library(taskscheduleR)
+library(lubridate)
+library(XML)
+library(RCurl)
+
+options(scipen = 999)
+
+###########################
+###Create Current Table of out of bounds limits
+parameters <- c("ChargerCurrent", "SheathFlow", "SheathTemperature", "20-30 nm", "30-50 nm", "50-70 nm", "70-100 nm", "100-200 nm", ">200 nm")
+hi_limit <- c(1050, 21, 40, 22603, 14447, 7239, 5268, 4874, 1064)
+low_limit <- c(950, 19, 10, 0, 0, 0, 0, 0, 0)
+
+control_limits <- data.frame(parameters = parameters, hi_limit = hi_limit, low_limit = low_limit, stringsAsFactors = FALSE)
+
+#########################
+##Set up the ftp site
+airvis_link <- "ftp://airvis:mpca@34.216.174.58/airvision/"
+##For next time you're looking for UFP data - The new FTP address has these numbers: @34.216.61.109/airvision/ 
+#############################
+##Pull in pre-automated data (files with data to March 7, 2018)
+setwd("X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/6 Air Data/UFP Processing/AirVision Data")
+
+ufp_files <- list.files()
+ufp_temp <- data.frame()
+
+for(i in ufp_files){
+airvis_df   <- read_delim(i, delim = "\t", col_names = FALSE, skip = 4, na = c("", "NA"), trim_ws = TRUE)
+col_names_df   <- read_delim(i, delim = "\t", n_max = 3, col_names = FALSE, skip = 1, na = c("", "NA"), trim_ws = TRUE)
+col_names_df <- filter(col_names_df, !is.na(X2))
+col_names_t <- as.data.frame(t(col_names_df))
+col_names_list <- paste0(col_names_t$V1, "_", col_names_t$V2)
+colnames(airvis_df) <- col_names_list
+ufp_temp <- rbind(airvis_df, ufp_temp)
+print(i)
+print(length(is.na(airvis_df$NA_Date)))
+}
+
+#############################
+##Pull in newest file on FTP site
+##Air vision is timing out before hte files can download, so I am manually saving files to this X drive location: X:\Programs\Air_Quality_Programs\Air Monitoring Data and Risks\6 Air Data\UFP Processing\AirVision Data
+
+##file_name_new <- paste0("962_UFP_", year(Sys.Date()), format(Sys.Date(),"%m"), "12.TXT")
+#airvis_df_new   <- read_delim(paste0(airvis_link, file_name_new), delim = "\t", col_names = FALSE, skip = 4, na = c("", "NA"), trim_ws = TRUE)
+#col_names_df_new   <- read_delim(paste0(airvis_link, file_name_new), delim = "\t", n_max = 3, col_names = FALSE, skip = 1, na = c("", "NA"), trim_ws = TRUE)
+
+#col_names_df_new <- filter(col_names_df_new, !is.na(X2))
+#col_names_t_new <- as.data.frame(t(col_names_df_new))
+#col_names_list_new <- paste0(col_names_t_new$V1, "_", col_names_t_new$V2)
+#colnames(airvis_df_new) <- col_names_list_new
+
+#ufp_temp <- rbind(ufp_temp, airvis_df_new)
+#ufp_temp <- unique(ufp_temp)
+
+##########################
+##Save interim dataset for rule script
+write_csv(ufp_temp, "X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/6 Air Data/UFP Processing/Data File/ufp_data_raw.csv")
+```
+
+- __Quality check the data__:
+
+```{r data validation}
+##libraries
+library(tidyverse)
+library(openair)
+library(ggplot2)
+library(RcppRoll)
+library(lubridate)
+library(car)
+library(DT)
+options(scipen = 999)
+
+ufp <- read.csv("X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/6 Air Data/UFP Processing/Data File/r_checked_rules.csv", stringsAsFactors = F)
+
+
+##Check for drift
+reportable_data <- ufp %>% 
+  filter(Null_Code != "AN",
+         !Size %in% c("ChargerCurrent", "SheathFlow", "SheathTemperature")) 
+sizes <- unique(reportable_data$Size)
+reportable_data$year <- year(reportable_data$Date)
+years <- unique(year(reportable_data$Date))
+reportable_data$quarter <- quarter(reportable_data$Date)
+quarters <- unique(quarter(reportable_data$Date))
+reportable_data$quarter_year <- paste0(quarter(reportable_data$Date), "_", year(reportable_data$Date))
+
+levene_function = function(Result, quarter_year, row, col) {
+  if(length(unique(quarter_year)) < 2){
+    return(NA)} 
+  data = data.frame(Result = Result, quarter_year = quarter_year)
+  return(leveneTest(Result ~ as.factor(quarter_year), data = data)[row,col])
+}
+
+leak_table_unfiltered <- data.frame()
+for(i in max(years):max(years)-1:length(years)){
+  for(j in i + 1){
+    data = data.frame()
+    data <- filter(reportable_data, !is.na(Result), year %in% c(i, j))
+    data <- data %>% group_by(Size, quarter) %>% 
+      summarise(fvalue_levene = levene_function(Result, quarter_year, 1,2), 
+                pval_levene = levene_function(Result, quarter_year, 1,3), 
+                deg_free_levene = levene_function(Result, quarter_year, 2,1),
+                Year_1 = min(year), 
+                Year_2 = max(year),
+                Mean_Year_1 = mean(Result[year == min(year)], na.rm = T),
+                Mean_Year_2 = mean(Result[year == max(year)], na.rm = T)) %>% ungroup()
+    leak_table_unfiltered  <- rbind(leak_table_unfiltered,data)
+  }
+}
+leak_table <- filter(leak_table_unfiltered, abs(Year_1 - Year_2) == 1)
+
+
+write_csv(leak_table, "X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/6 Air Data/UFP Processing/Data Validation Tool/levene_table.csv")
+
+###################################
+##Check for repeats--sticky values
+
+repeat_data <- group_by(reportable_data, year, Size) %>% 
+  arrange(year, Size, Date) %>% 
+  mutate(Previous_Result = lag(Result, 1), 
+         Two_Results_Prior = lag(Result, 2),
+         Three_Results_Prior = lag(Result, 3),
+         Four_Results_Prior = lag(Result, 4)) %>% ungroup()
+repeat_data <- mutate(repeat_data, 
+        Repeat_Test = ifelse(round(Result, digits = 4) == round(Previous_Result, digits=4) & round(Previous_Result, digits = 4) == round(Two_Results_Prior, digits = 4) & round(Two_Results_Prior, digits = 4) == round(Three_Results_Prior, digits = 4) & round(Three_Results_Prior, digits = 4) == round(Four_Results_Prior, digits = 4), "TRUE", "FALSE"))
+
+
+write_csv(repeat_data, "X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/6 Air Data/UFP Processing/Data Validation Tool/repeat_table.csv")
+
+######################################################
+##Pull together the data validation tables and the original large data table
+
+##add quarter year variables for the join on leak table
+ufp <- mutate(ufp, quarter_year = paste0(quarter(Date), "_", year(Date)))
+
+leak_table <- leak_table %>%
+  select(Size, quarter, fvalue_levene, pval_levene, deg_free_levene, Year_1, Year_2) %>%
+  gather(analysis_year, year, Year_1:Year_2) %>%
+  mutate(quarter_year = paste0(quarter, "_", year))
+
+big_table <- left_join(ufp, leak_table, by = c("Size" = "Size", "quarter_year" = "quarter_year"))
+
+##add variables for the join on repeat table
+repeat_table <- repeat_data %>%
+  select(Date, Size, year, quarter, quarter_year, Repeat_Test) %>%
+  unique()
+
+big_table <- left_join(big_table, repeat_table, by = c("Size" = "Size", "Date" = "Date", "quarter" = "quarter", "year" = "year", "quarter_year" = "quarter_year"))
+
+write.csv(big_table, "X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/6 Air Data/UFP Processing/Data File/r_checked_rules.csv", row.names = FALSE)
+
+write.csv(big_table[, c("Date", "Size", "Flags", "Null_Code", "Result")], "X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/6 Air Data/UFP Processing/Data File/ufp_data_qualifiers.csv", row.names = FALSE)
+
+```
 
 ### PAHs near facilities
 
@@ -141,6 +314,29 @@ names(alldata) <- str_replace_all(str_trim(names(alldata)), " ", "_")
 ```
 
 
+### Silica sand monitoring data
+
+- __Download monitoring around silica sand processing facilities and mines__:
+
+```{r silica sand data}
+library(tidyverse)
+library(RODBC)
+
+db_path <- "X:/Agency_Files/Emerging Issues/Silica Sand/Ambient Air Monitoring Data/Frac Sand Mine and Processing Ambient Air Data.accdb"
+table_name <- "Monitor Locational Information"
+table_name_2 <- "Measured Concentrations"
+table_name_3 <- "Winona Daily PM25 and Met Data"
+table_name_4 <- "Facility Information"
+
+si_db <- odbcConnectAccess2007(db_path)
+monitors <- sqlFetch(si_db, table_name, rownames = F, stringsAsFactors = F)
+measurements <- sqlFetch(si_db, table_name_2, rownames = F, stringsAsFactors = F)
+winona <- sqlFetch(si_db, table_name_3, rownames = F, stringsAsFactors = F)
+facilities <- sqlFetch(si_db, table_name_4, rownames = F, stringsAsFactors = F)
+odbcClose(si_db) 
+
+
+```
 
 
 ## Emissions
