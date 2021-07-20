@@ -105,6 +105,16 @@ people_orders_full <- full_join(people, orders)
 View(people_orders_full)
 ```
 
-> ### What's different?
+<br>
+
+> ### What about missing data?
+
+1. Re-open the Access file
+    - Add a person with no name to Table1 (i.e. add a city and no person name) 
+    - Add two donut orders with no name to Table2
+2. Re-run your R script
+**3. What does the joined table look like?**
+
+
 
 
