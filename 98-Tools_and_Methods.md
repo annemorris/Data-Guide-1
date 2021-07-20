@@ -113,7 +113,7 @@ View(people_orders_full)
     - Add a person with no name to Table1 (i.e. add a city and no person name) 
     - Add two donut orders with no name to Table2
 2. Re-run your R script
-**3. What does the joined table look like?**
+3. **What does the joined table look like?**
 
 
 
