@@ -6,7 +6,7 @@ title: Census
 ---
 
 ## American Community Survey (ACS) {#acs}
-The ACS provides updated demographic statistics used for population estimates and Environmental Justice indicators.  
+The ACS provides updated demographic statistics used for population estimates and demographic information for potential social vulnerability indicators. The data is available online at https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles.  
 
 
 Minnesota ACS results can be loaded into R using the `tidycensus` package. 
