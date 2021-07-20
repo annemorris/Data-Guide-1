@@ -84,7 +84,7 @@ people <- sqlFetch(access_connect, "Table1")
 orders <- sqlFetch(access_connect, "Table2")
 
 # Join the orders to the first table with `left_join()`
-people_orders <- left_join(people, orders)
+people_orders <- left_join(people, orders, by = "person")
 
 ```
 
@@ -96,11 +96,16 @@ View(people_orders)
 
 <br>
 
+> ### Try adding `na_matches = "never"` to left_join()
+
+
+<br>
+
 > ### Try using `full_join()`
 
 ```r
 # Join orders with `full_join()`
-people_orders_full <- full_join(people, orders)
+people_orders_full <- full_join(people, orders, by = "person")
 
 View(people_orders_full)
 ```
