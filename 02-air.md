@@ -81,12 +81,64 @@ Want to learn more about ultrafine particles?
 
 - __Download PAH data__:
 
+```r{
+##Load Packages
+library(tidyverse)
+library(RODBC)
+library(lubridate)
+#library(rmarkdown)
+
+##Set working Directory
+setwd("X:/Programs/Air_Quality_Programs/Air Focus Areas/EPA Community Scale Monitoring of PAHs Project/Data Analysis/Data Processing") 
+
+###################################################################
+##Pull In Data. Data are from an Access Table Named All Results. This query relates the concentration sheets provided by MDH, MPCA field sheets, a Site Information Table and a time summarizing sheet. 
+###################################################################
+conn = "X:/Programs/Air_Quality_Programs/Air Focus Areas/EPA Community Scale Monitoring of PAHs Project/Data Management/MPCA_MDH_DNRE Data/PAHs_Air_EPA_Grant.accdb"
+conn = odbcConnectAccess2007(conn) ##Connect to the ACCESS database
+alldata = sqlFetch(conn, "All Results", stringsAsFactors=FALSE) # read a table
+qcdata = sqlFetch(conn, "QC Results", stringsAsFactors=FALSE)
+siteinfo = sqlFetch(conn, "Site Information", stringsAsFactors=FALSE)
+pahinfo = sqlFetch(conn, "PAH Information", stringsAsFactors=FALSE)
+odbcClose(conn) # close the connection to the file
+
+alldata <- unique(alldata)
+alldata=as.data.frame(alldata, stringsAsFactors=FALSE)
+
+names(alldata) <- str_replace_all(str_trim(names(alldata)), " ", "_")
+}
+
 
 ### PAHs in residential neighborhoods and rural areas
 
 - __Download more PAH data__:
 
+```r{
+##Pull in packages
+library(tidyverse)
+library(RODBC)
+library(lubridate)
 
+##Set working Directory
+setwd("X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/Community Air Monitoring Project/Facility Focused PAH Project/Data Processing and Analysis/Data Processing") 
+
+###################################################################
+##Pull In Data. Data are from an Access Table Named All Results. This query relates the concentration sheets provided by MDH, MPCA field sheets, a Site Information Table and a time summarizing sheet. 
+###################################################################
+conn = "X:/Programs/Air_Quality_Programs/Air Monitoring Data and Risks/Community Air Monitoring Project/Facility Focused PAH Project/Data Management/PAH Data/PAHs_Air_Facility_Fenceline.accdb"
+conn = odbcConnectAccess2007(conn) ##Connect to the ACCESS database
+alldata = sqlFetch(conn, "All Results", stringsAsFactors=FALSE) # read a table
+qcdata = sqlFetch(conn, "QC Results", stringsAsFactors=FALSE)
+siteinfo = sqlFetch(conn, "Site Information", stringsAsFactors=FALSE)
+pahinfo = sqlFetch(conn, "PAH Information", stringsAsFactors=FALSE)
+odbcClose(conn) # close the connection to the file
+
+alldata <- unique(alldata)
+alldata=as.data.frame(alldata, stringsAsFactors=FALSE)
+
+names(alldata) <- str_replace_all(str_trim(names(alldata)), " ", "_")
+
+}
 
 
 
