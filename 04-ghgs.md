@@ -19,9 +19,9 @@ CEDR may be accessed through the ISO launch pad or by connecting to the server t
 - Schema: RAPIDS
 
 All tables, column names, data types, comments, keys, and relationships are documented here:
-[http://rainier.pca.state.mn.us/documentation/DataDictionary/DELTAW/RAPIDS/tables.html]
+http://rainier.pca.state.mn.us/documentation/DataDictionary/DELTAW/RAPIDS/tables.html
 
-- Double check that it is `W`, not `T`
+- Double check that it is `W` and NOT `T`
 
 
 ### CEDR application
