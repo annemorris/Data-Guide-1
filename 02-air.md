@@ -81,7 +81,7 @@ Want to learn more about ultrafine particles?
 
 - __Download PAH data__:
 
-```r{
+```{r get facilities}
 ##Load Packages
 library(tidyverse)
 library(RODBC)
@@ -106,14 +106,14 @@ alldata <- unique(alldata)
 alldata=as.data.frame(alldata, stringsAsFactors=FALSE)
 
 names(alldata) <- str_replace_all(str_trim(names(alldata)), " ", "_")
-}
+```
 
 
 ### PAHs in residential neighborhoods and rural areas
 
 - __Download more PAH data__:
 
-```r{
+```r{get communities}
 ##Pull in packages
 library(tidyverse)
 library(RODBC)
@@ -138,7 +138,7 @@ alldata=as.data.frame(alldata, stringsAsFactors=FALSE)
 
 names(alldata) <- str_replace_all(str_trim(names(alldata)), " ", "_")
 
-}
+```
 
 
 
