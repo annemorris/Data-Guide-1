@@ -117,7 +117,7 @@ View(city_orders_full)
 
 <br>
 
-> ### What if you had rows with missing values?
+> ### What if you have rows with missing values?
 
 1. Re-open the Access file
     - Add a person with no name to Table1 (i.e. add a city and no person name) 
