@@ -8,7 +8,7 @@ title: Greenhouse gas emissions
 
 Greenhouse gas emissions are estimated in a variety of spreadsheets housed on the X-drive. Methods vary depending on data, and include facility process level emissions and fuel consumption, top-down fuel consumption, activity data, demographics, and modeled data.
 
-Staff contact: Anne Claflin
+Staff contact: Anne Claflin, Angela Hawkins
 
 
 ## Facility GHG emissions - CEDR (Rapids)
