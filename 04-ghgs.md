@@ -4,19 +4,20 @@ title: Greenhouse gas emissions
 ---
 
 ---
-
+* Add table of contents
+{:toc}
 
 Greenhouse gas emissions are estimated in a variety of spreadsheets housed on the X-drive. Methods vary depending on data, and include facility process level emissions and fuel consumption, top-down fuel consumption, activity data, demographics, and modeled data.
 
 Staff contact: Anne Claflin, Angela Hawkins
 
-## Statewide summary data
+# Statewide summary data
 https://www.pca.state.mn.us/air/greenhouse-gas-emissions-data 
 
-## Facility GHG emissions - CEDR (Rapids)
+# Facility GHG emissions - CEDR (Rapids)
 CEDR may be accessed through the ISO launch pad or by connecting to the server through Tableau, R, etc. 
 
-### Database via Tableau
+## Database via Tableau
 - Server: deltaw.pca.state.mn.us
 - Schema: RAPIDS
 
@@ -25,7 +26,7 @@ http://rainier.pca.state.mn.us/documentation/DataDictionary/DELTAW/RAPIDS/tables
 
 - Double check that it is `W` and NOT `T`
 
-### Database via R
+## Database via R
 
 ```r
 library(RODBC) # package needed to access Oracle DeltaW database
@@ -43,10 +44,10 @@ tbls_rapids <- RODBC::sqlTables(deltaw, schema = "SUPERAPIDS")
 pollutants <- RODBC::sqlQuery(deltaw, "Select * from SUPERAPIDS.REF_MATERIAL_CODES", max = 2000)
 ```
 
-### CEDR application
+## CEDR application
 The application can look up individual facilities, but it is often more useful to export tables.
 
-#### To export data from CEDR:
+### To export data from CEDR:
 
 - File > Export > Rapids 3 > Select Inventory tables 
 - Open with Excel, rename and save as .xlsx
@@ -61,13 +62,12 @@ These inventory tables are necessary:
 * Inv Sources	// SRC
 * Inv Process Emissions	// PEM
 
-#### Notes on CEDR tables
+### Notes on CEDR tables
 In the table *Inventory Process Activities*, rename the data field *MATERIAL CODE* as *ACTIVITY MATERIAL CODE.* This helps distinguish it as the fuel consumed or other activity, as opposed to the other *MATERIAL CODE* in the *Process Emissions* table. Rename that one *EMISSIONS MATERIAL CODE*
 
 When working with activity data, be very careful to avoid double counting. This can occur when adding up sources if the throughput is duplicated for each pollutant or if the throughput is reported in multiple units (volume, heat, equipment, work). 
 
-
-#### Post-processing
+### Post-processing
 Lots, including standardizing fuels, standardizing all throughput units to volumes, and separating blended biofuels into fossil and bio components.
 
 **Blended fuels** 
@@ -82,15 +82,15 @@ CEDR cannot split biofuel and fossil fuel portions of blended fuels (biodiesel, 
 7.	Copy biodiesel and fossil data back into spreadsheet 
 8.	Exclude the fuel blends from analysis
 
-## Top-down 
+# Top-down 
 The data we have from facilities is only a portion of the greenhouse gas emissions in the state. In some cases it is mostly complete (electricity generation) and in others we know there are gaps. We use total fuel consumption from federal and state data sources, subtract what is known from facilities, and assign the unknown consumption to sectors.
 
-## Modeled data
+# Modeled data
 On-road transportation emissions are modeled in MOVES.
 
 Landfill emissions are modeled in LandGEM.
 
-## Methods and data sources
+# Methods and data sources
 A table of sources for the inventory methodology, emission factors, and activity data is available on the X drive here: <xdrive\Programs\Air_Quality_Programs\Climate Change\Inventory Files\Active Files\Methods Tables.xlsx>
 
 Improvements to the technical support document and data accessibility are in progress. 
