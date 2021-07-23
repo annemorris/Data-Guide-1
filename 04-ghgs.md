@@ -10,9 +10,11 @@ Greenhouse gas emissions are estimated in a variety of spreadsheets housed on th
 
 Staff contact: Anne Claflin, Angela Hawkins
 
+## Statewide summary data
+https://www.pca.state.mn.us/air/greenhouse-gas-emissions-data 
 
 ## Facility GHG emissions - CEDR (Rapids)
-CEDR may be accessed through the ISO launch pad or by connecting to the server through Tableau. 
+CEDR may be accessed through the ISO launch pad or by connecting to the server through Tableau, R, etc. 
 
 ### Database via Tableau
 - Server: deltaw.pca.state.mn.us
@@ -23,6 +25,23 @@ http://rainier.pca.state.mn.us/documentation/DataDictionary/DELTAW/RAPIDS/tables
 
 - Double check that it is `W` and NOT `T`
 
+### Database via R
+
+```r
+library(RODBC) # package needed to access Oracle DeltaW database
+
+# Open DELTA connection and set to `deltaw`
+# ask someone for the username and password
+deltaw <- odbcConnect("DeltaW", uid=" ", pwd=" ") 
+
+# list tables
+tbls_all <- RODBC::sqlTables(deltaw)
+tbls_rapids <- RODBC::sqlTables(deltaw, schema = "SUPERAPIDS")
+
+# Run a custom query
+## This query loads the reference table for the pollutant - CAS number table from the SUPERAPIDS air emissions inventory database.
+pollutants <- RODBC::sqlQuery(deltaw, "Select * from SUPERAPIDS.REF_MATERIAL_CODES", max = 2000)
+```
 
 ### CEDR application
 The application can look up individual facilities, but it is often more useful to export tables.
@@ -70,3 +89,8 @@ The data we have from facilities is only a portion of the greenhouse gas emissio
 On-road transportation emissions are modeled in MOVES.
 
 Landfill emissions are modeled in LandGEM.
+
+## Methods and data sources
+A table of sources for the inventory methodology, emission factors, and activity data is available on the X drive here: <xdrive\Programs\Air_Quality_Programs\Climate Change\Inventory Files\Active Files\Methods Tables.xlsx>
+
+Improvements to the technical support document and data accessibility are in progress. 
