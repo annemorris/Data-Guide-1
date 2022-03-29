@@ -41,7 +41,10 @@ Custom base maps allow more flexible use of spatial data in Tableau.  Most are l
 ArcGIS online is a portal for interactive mapping applications.  These applications consume spatial data services and support a [variety of presentation styles](http://mpca.maps.arcgis.com/home/index.html).  Consider GIS online maps as an alternative to Tableau dashboards.  Each serves a different audience and both are useful in the right context.
 Submit a MNIT ticket to become an author at the MPCA GIS Online page.
 
-## Land use maps {#landuse}
+## Lorax webpage about GIS resources
+Internal Lorax page is available to summarize these resources [Lorax](https://lorax.pca.state.mn.us/resources/IT/GIS)
+
+##Land use maps {#landuse}
 Land use shapefiles are maintained by MPCA GIS technical staff and stored on the agency R-drive at `R:\landuse_landcover`.
 
 
