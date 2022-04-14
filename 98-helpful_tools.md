@@ -150,6 +150,16 @@ sqlSave(access_connect,
 ```r
 sqlQuery(access_connect, "SELECT person FROM Table1")
 ```
+```r
+Another useful tool at the agency is SQL Developer. You can add the program via a ticket to MNIT.
+Once you get the software, you can connect to deltaW using the following credentials:
+- Connection name: deltaw_tableau
+- Username: tableau
+- Password: ask a team member
+- Hostname: deltaw.pca.state.mn.us
+- Port: 1521
+- sid: deltaw
+```
 
 > ### View only the non-matches with `anti_join()`
 
